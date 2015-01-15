@@ -1,0 +1,25 @@
+'use strict';
+
+//Setting up route
+angular.module('sentry-activity').config(['$stateProvider',
+	function($stateProvider) {
+		// Sentry activity state routing
+		$stateProvider.
+		state('sentry-activity-manage', {
+			url: '/sentry-activity-manage',
+			templateUrl: 'modules/sentry-activity/views/sentry-activity-manage.client.view.html'
+		}).
+		state('sentry-activity-archive', {
+			url: '/sentry-activity-archive',
+			templateUrl: 'modules/sentry-activity/views/sentry-activity-archive.client.view.html'
+		}).
+		state('sentry-activity-action', {
+			url: '/sentry-activity-action',
+			templateUrl: 'modules/sentry-activity/views/sentry-activity-control.client.view.html'
+		}).
+		state('sentry-activity-view', {
+			url: '/sentry-activity-view',
+			templateUrl: 'modules/sentry-activity/views/sentry-activity-view.client.view.html'
+		});
+	}
+]);

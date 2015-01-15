@@ -1,0 +1,39 @@
+<section data-ng-controller="SentryActivityController" data-ng-init="findOne()">
+	<div class="page-header text-center">
+		<h2>Sentry Activity</h2>
+	</div>
+	<ul class="list-group top-buffer">
+		<li class="list-group-item clearfix">
+			<label>Action: </label>
+			<span data-ng-bind="activity.Action"></span>	
+			</li>
+		<li class="list-group-item">
+			<label>Sentry: </label>
+			<span data-ng-bind="activity.user.displayName"></span>	
+		</li>
+		<li class="list-group-item">
+			<label>Start Date: </label>
+			<span data-ng-bind="activity.StartDate | date: 'shortDate'"></span>
+		</li>
+		<li class="list-group-item">
+			<label>End Date: </label>
+			<span data-ng-bind="activity.EndDate | date: 'shortDate'"></span>
+		</li>
+		<li class="list-group-item">
+			<label>Start Time: </label>
+			<span data-ng-bind="activity.StartTime | date: 'HHmm'"></span>
+		</li>
+		<li class="list-group-item">
+			<label>End Time: </label>
+			<span data-ng-bind="activity.EndTime | date: 'HHmm'"></span> 
+		</li>
+	</ul>
+	<div class="text-center">
+		<a class="btn btn-default" href="#!/sentry-activity/{{activity._id}}/edit">
+			Edit <i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-default" data-ng-click="remove(activity)">
+			Delete <i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+</section>

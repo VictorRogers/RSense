@@ -1,0 +1,43 @@
+<section data-ng-controller="SentryActivityController">
+	<div class="page-header text-center">
+		<h2>Sentry Control Panel</h2>
+	</div>
+	<form class="form-horizontal text-center">
+		<div class="form-group">
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="onDuty()"
+							data-ng-show="authentication.user.sentryStatus == 'Inactive'">
+			On Duty
+			</button>
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="beginPatrol()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Patrol
+			</button>
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="endPatrol()"
+							data-ng-show="authentication.user.sentryStatus == 'Patrolling'">
+			Stop Patrolling
+			</button>
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="beginMonitor()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Monitor
+			</button>
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="endMonitor()"
+							data-ng-show="authentication.user.sentryStatus == 'Monitoring'">
+			Stop Monitoring
+			</button>
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="beginBreak()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Break
+			</button>
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="endBreak()"
+							data-ng-show="authentication.user.sentryStatus == 'Break'">
+			End Break
+			</button>
+		</div>
+		<div class="form-group top-buffer">
+			<button type="button" class="btn btn-default btn-lg" data-ng-click="offDuty()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Off Duty
+			</button>
+		</div>
+	</form>
+</section>

@@ -1,0 +1,3 @@
+<section data-ng-controller="SentryActivityController">
+	This is the Sentry activity control
+</section>

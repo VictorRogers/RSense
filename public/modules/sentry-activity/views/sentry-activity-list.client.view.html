@@ -1,0 +1,72 @@
+<section data-ng-controller="SentryActivityController" data-ng-init="find()">
+		<div class="page-header text-center">
+			<h2>Sentry Activities</h2>
+		</div>
+		<div class="text-center">
+			<a href="#!/sentry-activity/new" class="btn btn-default btn-lg">
+				 Sentry Control Panel
+			</a>
+		</div>
+		<br>
+		<form class="form-horizontal">
+			<div class="form-group top-buffer">
+				<label class="control-label col-sm-2" for="search">Search</label>
+				<div class="controls col-sm-8">
+					<input class="form-control" data-ng-model="searchActivities">
+				</div>
+			</div>
+		</form>
+		<table class="table table-striped top-buffer">
+			<tr>
+				<th>
+					Action
+				</th>
+				<th>
+					Sentry
+				</th>
+				<th>
+					Date
+				</th>
+				<th>
+					Time
+				</th>
+			</tr>
+			<tr data-ng-href="/#!/" data-ng-repeat="activity in activities | 
+				  filter: searchActivities | pagination: currentPage * pageSize | 
+					limitTo: pageSize">
+				<td>
+					<a href="#!/sentry-activity/{{activity._id}}" class="a-custom">
+					<span data-ng-bind="activity.Action"></span>
+					</a>
+				</td>
+				<td>
+					<a href="#!/sentry-activity/{{activity._id}}" class="a-custom">
+					<span data-ng-bind="activity.user.displayName"></span>
+					</a>
+				</td>
+				<td>
+					<a href="#!/sentry-activity/{{activity._id}}" class="a-custom">
+					<span data-ng-bind="activity.StartDate | date: 'shortDate'"></span>
+					</a>
+				</td>
+				<td>
+					<a href="#!/sentry-activity/{{activity._id}}" class="a-custom">
+					<span data-ng-bind="activity.StartTime | date: 'HHMM'"></span>
+					</a>
+				</td>
+			</tr>
+		</table>
+		<div class="form-group text-center top-buffer">
+			<button type="button" class="btn btn-default"
+							data-ng-disabled="currentPage == 0"
+							data-ng-click="currentPage = currentPage - 1">
+			Previous
+			</button>
+			<span>Page {{currentPage + 1}} of {{pages()}}</span>
+			<button type="button" class="btn btn-default"
+							data-ng-disabled="currentPage >= activities.length/pageSize - 1"
+							data-ng-click="currentPage = currentPage + 1">
+			Next
+			</button>
+		</div>
+</section>
