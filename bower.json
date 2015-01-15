@@ -4,7 +4,6 @@
 	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
 	"dependencies": {
 		"bootstrap": "~3",
-		"moment": "~2.9"
 		"angular": "~1.2",
 		"angular-resource": "~1.2",
 		"angular-mocks": "~1.2",
