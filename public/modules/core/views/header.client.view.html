@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		<a href="/#!/" class="navbar-brand"
-			data-ng-hide="authentication.user && authentication.user.roles != ''">RSense</a>
+			data-ng-hide="authentication.user && authentication.user.roles == ''">RSense</a>
 		<a href="/#!/dashboard" class="navbar-brand" 
 			 data-ng-if="menu.shouldRender(authentication.user.roles != '')">RSense</a>
 	</div>
