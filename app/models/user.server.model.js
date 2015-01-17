@@ -99,23 +99,19 @@ var UserSchema = new Schema({
 	},
 	//Current Sentry Activity Start Date 
 	sentryCurrentActivityStartDate: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	//Current Sentry Activity End Date
 	sentryCurrentActivityEndDate: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	//Current Sentry Activity Start Time
 	sentryCurrentActivityStartTime: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	//Current Sentry Activity End Time
 	sentryCurrentActivityEndTime: {
-		type: Date,
-		default: Date.now
+		type: Date
 	}
 });
 
