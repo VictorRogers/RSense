@@ -18,20 +18,16 @@ var SentryActivitySchema = new Schema({
 		}]
 	},
 	StartDate: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	EndDate: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	StartTime: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	EndTime: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	user: {
 		type: Schema.ObjectId,
