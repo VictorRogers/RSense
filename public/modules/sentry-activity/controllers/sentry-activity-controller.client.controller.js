@@ -5,7 +5,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 	function($scope, $stateParams, $location, Users, Authentication, SentryActivity) {
 		$scope.authentication = Authentication;
 		var user = new Users($scope.user);
-
+		
 		//Sentry Active Functions
 		$scope.onDuty = function() {	
 			user.sentryStatus = 'Active';
@@ -60,9 +60,9 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			
 			var activity = new SentryActivity({
 				Action: 'Patrol',
-				StartDate: user.sentryCurrentActivityStartDate,
+				StartDate: Authentication.user.sentryCurrentActivityStartDate,
 				EndDate: user.sentryCurrentActivityEndDate,
-				StartTime: user.sentryCurrentActivityStartTime,
+				StartTime: Authentication.user.sentryCurrentActivityStartTime,
 				EndTime: user.sentryCurrentActivityEndTime
 			});
 			
@@ -102,9 +102,9 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			
 			var activity = new SentryActivity({
 				Action: 'Monitor',
-				StartDate: user.sentryCurrentActivityStartDate,
+				StartDate: Authentication.user.sentryCurrentActivityStartDate,
 				EndDate: user.sentryCurrentActivityEndDate,
-				StartTime: user.sentryCurrentActivityStartTime,
+				StartTime: Authentication.user.sentryCurrentActivityStartTime,
 				EndTime: user.sentryCurrentActivityEndTime			
 			});
 
@@ -144,9 +144,9 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			
 			var activity = new SentryActivity({
 				Action: 'Break',
-				StartDate: user.sentryCurrentActivityStartDate,
+				StartDate: Authentication.user.sentryCurrentActivityStartDate,
 				EndDate: user.sentryCurrentActivityEndDate,
-				StartTime: user.sentryCurrentActivityStartTime,
+				StartTime: Authentication.user.sentryCurrentActivityStartTime,
 				EndTime: user.sentryCurrentActivityEndTime
 			});
 			
