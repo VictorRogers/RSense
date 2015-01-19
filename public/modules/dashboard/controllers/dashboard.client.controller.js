@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('dashboard').controller('DashboardController', 
-['$scope', '$stateParams', '$location', 'Users', 'Authentication',
-	function($scope, $stateParams, $location, Users, Authentication) {
+['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'Dashboard',
+	function($scope, $stateParams, $location, Users, Authentication, Dashboard) {
 		$scope.authentication = Authentication;
 
 		$scope.findSentries = function() {
-			$scope.sentries = Users.query();
+			$scope.sentries = Dashboard.query();
 		};
 	}
 ]);

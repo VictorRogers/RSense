@@ -21,7 +21,7 @@ exports.userByID = function(req, res, next, id) {
 	});
 };
 
-exports.list = function(req, res) {
+exports.listSentries = function(req, res) {
 	User.find({roles: 'sentry'})
 	.exec(function(err, sentry) {
 		if (err) {
@@ -30,6 +30,20 @@ exports.list = function(req, res) {
 			});
 		} else {
 			res.json(sentry);
+		}
+	});
+};
+
+
+exports.listUsers = function(req, res) {
+	User.find()
+	.exec(function(err, usersList) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(usersList);
 		}
 	});
 };
