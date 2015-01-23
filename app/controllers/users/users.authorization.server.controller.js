@@ -21,6 +21,30 @@ exports.userByID = function(req, res, next, id) {
 	});
 };
 
+exports.manageUserByID = function(req, res, next, id) {
+	if (!req.user || req.user.roles.indexOf('admin') == -1) {
+		return res.status(403).send({
+			message: 'User is not authorized'
+		})
+	};
+	User.findOne({
+		_id: id
+	}, function(err, manageUser) {
+		if (err) {
+			return next(err);
+		} else {
+			req.user = manageUser;
+			next();
+		}
+	});
+};
+
+exports.adminRead = function(req, res) {
+	res.json(req.user);
+};
+
+
+
 exports.listSentries = function(req, res) {
 	User.find({roles: 'sentry'})
 	.exec(function(err, sentry) {
@@ -46,6 +70,25 @@ exports.listUsers = function(req, res) {
 			res.json(usersList);
 		}
 	});
+};
+
+exports.adminUpdate = function(req, res) {	
+	var user = req.user;		
+	
+	user = _.extend(user, req.body);
+
+user.displayName = user.firstName + ' ' + user.lastName;
+
+	
+	user.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(user);
+		}
+	});	
 };
 
 

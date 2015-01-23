@@ -41,7 +41,7 @@
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li data-ng-show="authentication.user.roles == 'admin'">
+					<li data-ng-show="authentication.user.roles.indexOf('admin') != -1">
 						<a href="/#!/admin-panel">Admin Panel</a>
 					</li>
 					<li>

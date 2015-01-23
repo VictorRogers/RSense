@@ -1,7 +1,6 @@
-<section data-ng-controller="AdminPanelController">
+<section data-ng-controller="AdminPanelController" data-ng-init="findAllUsers()">
 	<div class="page-header text-center">
-		<h1>Admin Panel</h1>
-		<h3>Manage Users</h3>
+		<h2>User Manager</h2>
 	</div>
 	
 	<div class="form-group">
@@ -12,5 +11,46 @@
 					<option value="manage-users">Users</option>
 				</select>
 			</div>
+		</div>
+		
+		<br><br><br><br>
+
+		<form class="form-horizontal">
+			<div class="form-group top-buffer">
+				<label class="control-label col-sm-2" for="search">Search</label>
+				<div class="controls col-sm-8">
+					<input class="form-control" data-ng-model="searchUsers">
+				</div>
+			</div>
+		</form>	
+
+		<table class="table table-striped top-buffer">
+			<tr>
+				<th>
+					User
+				</th>
+			</tr>
+			<tr data-ng-repeat="user in usersList | filter: searchUsers |
+													pagination: currentPage * pageSize |
+													limitTo: pageSize">
+				<td>
+					<a href="#!/manage-users/{{user._id}}" class="a-custom">
+					<span data-ng-bind="user.displayName"></span>
+					</a>
+				</td>
+			</tr>
+		</table>
+		<div class="form-group text-center top-buffer">
+			<button type="button" class="btn btn-default"
+							data-ng-disabled="currentPage == 0"
+							data-ng-click="currentPage = currentPage - 1">
+			Previous
+			</button>
+			<span>Page {{currentPage + 1}} of {{pages()}}</span>
+			<button type="button" class="btn btn-default"
+							data-ng-disabled="currentPage >= usersList.length/pageSize - 1"
+							data-ng-click="currentPage = currentPage + 1">
+			Next
+			</button>
 		</div>
 </section>

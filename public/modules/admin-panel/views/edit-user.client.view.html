@@ -1,0 +1,77 @@
+<section data-ng-controller="AdminPanelController" data-ng-init="findOneUser()">
+	<div class="page-header text-center">
+		<h2>User Manager</h2>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Select Menu</label>
+			<div class="col-sm-10">
+				<select class="form-control" data-ng-model="selectedOption" 
+								data-ng-change="changeView(selectedOption)">	
+					<option value="manage-users">Users</option>
+				</select>
+			</div>
+	</div>
+	<br><br><br><br>
+
+	<form name="editForm" class="form-horizontal"
+				data-ng-submit="editUser(editForm.$valid)" novalidate>
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="firstName">First Name</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="firstName" name="firstName" class="form-control"
+								 data-ng-model="managedUser.firstName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="lastName">Last Name</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="lastName" name="lastName" class="form-control"
+								 data-ng-model="managedUser.lastName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">Email</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="email" name="email" class="form-control"
+								 data-ng-model="managedUser.email">
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="username">Username</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="username" name="username" class="form-control"
+								 data-ng-model="managedUser.username">
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="status">Status</label>
+				<div class="controls col-sm-10">
+					<select class="form-control" data-ng-model="editStatus"
+									data-ng-options="status as status for status in possibleStatus">	
+					</select>
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label col-sm-2">Roles</label>
+					<div class="controls col-sm-10">
+						<label class="checkbox-inline" 
+									 data-ng-repeat="role in possibleRoles">
+						<input type="checkbox" name="possibleRoles[]" value="{{role}}" 
+									 data-ng-checked="managedUser.roles.indexOf(role) > -1"
+									 data-ng-click="toggleSelection(role)">
+									 {{role}}
+						</label>
+						</select>	
+					</div>
+				</div>	
+			<div class="form-group text-center">
+				<input type="submit" value="Update" class="btn btn-default">
+			</div>
+			<div data-ng-show="error" class="text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</fieldset>
+	</form>
+</section>

@@ -49,6 +49,13 @@ exports.update = function(req, res) {
 };
 
 /**
+ * Show the current user being managed
+ */
+exports.read = function(req, res) {
+	res.json(req.user);
+};
+
+/**
  * Send User
  */
 exports.me = function(req, res) {
