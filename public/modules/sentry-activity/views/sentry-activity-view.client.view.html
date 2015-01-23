@@ -13,20 +13,29 @@
 		</li>
 		<li class="list-group-item">
 			<label>Start Date: </label>
-			<span data-ng-bind="activity.StartDate | date: 'shortDate'"></span>
+			<span data-ng-bind="activity.StartDate |
+						amDateFormat: 'M-DD-YY'"></span>
 		</li>
 		<li class="list-group-item">
 			<label>End Date: </label>
-			<span data-ng-bind="activity.EndDate | date: 'shortDate'"></span>
+			<span data-ng-bind="activity.EndDate | 
+						amDateFormat: 'M-DD-YY'"></span>
 		</li>
 		<li class="list-group-item">
 			<label>Start Time: </label>
-			<span data-ng-bind="activity.StartTime | date: 'HHmm'"></span>
+			<span data-ng-bind="activity.StartDate |
+						amDateFormat: 'h:mm a'"></span>
 		</li>
 		<li class="list-group-item">
 			<label>End Time: </label>
-			<span data-ng-bind="activity.EndTime | date: 'HHmm'"></span> 
+			<span data-ng-bind="activity.EndDate | 
+						amDateFormat: 'h:mm a'"></span> 
 		</li>
+		<li class="list-group-item">
+			<Label>Duration: </label>
+			<span data-ng-bind="activity.Duration"></span>
+		</li>
+
 	</ul>
 	<div class="text-center">
 		<a class="btn btn-default" href="#!/sentry-activity/{{activity._id}}/edit">

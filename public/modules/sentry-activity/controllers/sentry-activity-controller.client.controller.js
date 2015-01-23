@@ -4,8 +4,8 @@ angular.module('sentry-activity').controller('SentryActivityController',
 ['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'SentryActivity', 
 	function($scope, $stateParams, $location, Users, Authentication, SentryActivity) {
 		$scope.authentication = Authentication;
-		var user = new Users($scope.user);
-		
+		var user = new Users($scope.user);		
+
 		//Sentry Active Functions
 		$scope.onDuty = function() {	
 			user.sentryStatus = 'Active';
@@ -34,8 +34,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		$scope.beginPatrol = function() {
 		  $location.path('sentry-activity');	
 			user.sentryStatus = 'Patrolling';	
-			user.sentryCurrentActivityStartDate = Date.now(); 
-			user.sentryCurrentActivityStartTime = Date.now();	
+			user.sentryCurrentActivityStartDate = moment(); 	
 
 			user.$update(function(response) {
 				$scope.success = true;
@@ -47,8 +46,8 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		
 		$scope.endPatrol = function() {
 			$location.path('sentry-activity');
-			user.sentryCurrentActivityEndDate = Date.now();
-			user.sentryCurrentActivityEndTime = Date.now();
+			user.sentryCurrentActivityEndDate = moment();
+
 			user.sentryStatus = 'Active';
 
 			user.$update(function(response) {
@@ -58,12 +57,19 @@ angular.module('sentry-activity').controller('SentryActivityController',
 				$scope.error = response.data.message;
 			});
 			
+			var end = moment(user.sentryCurrentActivityEndDate);
+			var start = moment(Authentication.user.sentryCurrentActivityStartDate);
+
+			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
+							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
+			var d = moment.duration(ms);
+			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
+
 			var activity = new SentryActivity({
 				Action: 'Patrol',
 				StartDate: Authentication.user.sentryCurrentActivityStartDate,
 				EndDate: user.sentryCurrentActivityEndDate,
-				StartTime: Authentication.user.sentryCurrentActivityStartTime,
-				EndTime: user.sentryCurrentActivityEndTime
+				Duration: output,
 			});
 			
 			activity.$save(function(response) {
@@ -76,8 +82,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		$scope.beginMonitor = function() {
 		  $location.path('sentry-activity');	
 			user.sentryStatus = 'Monitoring';	
-			user.sentryCurrentActivityStartDate = Date.now(); 
-			user.sentryCurrentActivityStartTime = Date.now();
+			user.sentryCurrentActivityStartDate = moment(); 
 
 			user.$update(function(response) {
 				$scope.success = true;
@@ -89,8 +94,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 
 		$scope.endMonitor = function() {
 			$location.path('sentry-activity');
-			user.sentryCurrentActivityEndDate = Date.now();
-			user.sentryCurrentActivityEndTime = Date.now();
+			user.sentryCurrentActivityEndDate = moment();
 			user.sentryStatus = 'Active';
 
 			user.$update(function(response) {
@@ -99,13 +103,20 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			}, function(response) {
 				$scope.error = response.data.message;
 			});
-			
+
+			var end = moment(user.sentryCurrentActivityEndDate);
+			var start = moment(Authentication.user.sentryCurrentActivityStartDate);
+
+			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
+							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
+			var d = moment.duration(ms);
+			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
+
 			var activity = new SentryActivity({
 				Action: 'Monitor',
 				StartDate: Authentication.user.sentryCurrentActivityStartDate,
 				EndDate: user.sentryCurrentActivityEndDate,
-				StartTime: Authentication.user.sentryCurrentActivityStartTime,
-				EndTime: user.sentryCurrentActivityEndTime			
+				Duration: output,
 			});
 
 			activity.$save(function(response) {
@@ -118,8 +129,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		$scope.beginBreak = function() {
 		  $location.path('sentry-activity');	
 			user.sentryStatus = 'Break';	
-			user.sentryCurrentActivityStartDate = Date.now(); 
-			user.sentryCurrentActivityStartTime = Date.now();
+			user.sentryCurrentActivityStartDate = moment(); 
 
 			user.$update(function(response) {
 				$scope.success = true;
@@ -131,8 +141,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 
 		$scope.endBreak = function() {
 			$location.path('sentry-activity');
-			user.sentryCurrentActivityEndDate = Date.now();
-			user.sentryCurrentActivityEndTime = Date.now();
+			user.sentryCurrentActivityEndDate = moment();
 			user.sentryStatus = 'Active';
 
 			user.$update(function(response) {
@@ -141,13 +150,20 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			}, function(response) {
 				$scope.error = response.data.message;
 			});
-			
+		
+			var end = moment(user.sentryCurrentActivityEndDate);
+			var start = moment(Authentication.user.sentryCurrentActivityStartDate);
+
+			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
+							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
+			var d = moment.duration(ms);
+			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
+
 			var activity = new SentryActivity({
 				Action: 'Break',
 				StartDate: Authentication.user.sentryCurrentActivityStartDate,
 				EndDate: user.sentryCurrentActivityEndDate,
-				StartTime: Authentication.user.sentryCurrentActivityStartTime,
-				EndTime: user.sentryCurrentActivityEndTime
+				Duration: output,
 			});
 			
 			activity.$save(function(response) {
@@ -158,11 +174,16 @@ angular.module('sentry-activity').controller('SentryActivityController',
 
 		$scope.editActivity = function() {
 			var activity = $scope.activity;
-			activity.Action = $scope.editAction;	
-			activity.StartDate = $scope.editStartDate;
-			activity.EndDate = $scope.editEndDate;	
-			activity.StartTime = $scope.editStartTime;
-			activity.EndTime = $scope.editEndTime;
+
+			var end = moment(activity.EndDate);
+			var start = moment(activity.StartDate);
+
+			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
+							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
+			var d = moment.duration(ms);
+			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
+			
+			activity.Duration = output;
 
 			activity.$update(function() {
 				$location.path('sentry-activity');
@@ -222,7 +243,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		//Datepicker Controls
 		//===========================================================================
 		$scope.today = function() {
-	    $scope.dt = new Date();
+	    $scope.dt = moment();
 	  };
 	  $scope.today();
 	

@@ -34,6 +34,7 @@ angular.module('admin-panel').controller('AdminPanelController',
 		$scope.editUser = function() {
 			var user = $scope.managedUser;
 			user.sentryStatus = $scope.editStatus;
+			user.sentryCurrentActivityStartDate = moment();
 
 			user.$update(function() {
 				$location.path('manage-users');

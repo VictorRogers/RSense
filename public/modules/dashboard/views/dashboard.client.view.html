@@ -1,9 +1,9 @@
 <section data-ng-controller="DashboardController" data-ng-init="findSentries()">
 	<div class="page-header text-center">
-		<h1>WCCC - Muscle Shoals, AL</h1>
+		<h1>WCCC</h1>
 	</div>
 	<div class="text-center">
-		<h3>Zone Sentries</h3>
+		<h3>Sentries</h3>
 	</div>
 	<table class="table table-striped top-buffer">
 		<tr>
@@ -13,6 +13,9 @@
 			<th>
 				Status
 			</th>
+			<th>
+				Time	
+			</th>
 		</tr>
 		<tr data-ng-repeat="sentry in sentries">
 			<td>
@@ -20,6 +23,9 @@
 			</td>
 			<td>
 				<span data-ng-bind="sentry.sentryStatus"></span>
+			</td>
+			<td>
+				<span am-time-ago="sentry.sentryCurrentActivityStartDate"></span>
 			</td>
 		</tr>
 	</table>

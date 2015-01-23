@@ -104,14 +104,6 @@ var UserSchema = new Schema({
 	//Current Sentry Activity End Date
 	sentryCurrentActivityEndDate: {
 		type: Date
-	},
-	//Current Sentry Activity Start Time
-	sentryCurrentActivityStartTime: {
-		type: Date
-	},
-	//Current Sentry Activity End Time
-	sentryCurrentActivityEndTime: {
-		type: Date
 	}
 });
 

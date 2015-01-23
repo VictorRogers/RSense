@@ -23,11 +23,7 @@ var SentryActivitySchema = new Schema({
 	EndDate: {
 		type: Date
 	},
-	StartTime: {
-		type: Date
-	},
-	EndTime: {
-		type: Date
+	Duration: { 
 	},
 	user: {
 		type: Schema.ObjectId,

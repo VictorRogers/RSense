@@ -8,7 +8,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="editAction">Action</label>
 				<div class="controls col-sm-10">
-					<select class="form-control" id="editAction" data-ng-model="editAction">
+					<select class="form-control" id="editAction" data-ng-model="activity.Action">
 						<option value="Break">Break</option>
 						<option value="Monitor">Monitor</option>
 						<option value="Patrol">Patrol</option>
@@ -20,7 +20,7 @@
 				<div class="controls col-sm-10">
 					<div class="input-group">
 	    	    <input type="text" class="form-control" datepicker-popup="{{format}}"
-									 data-ng-model="editStartDate" is-open="sdOpened"  
+									 data-ng-model="activity.StartDate" is-open="sdOpened"  
 									 datepicker-options="dateOptions" date-disabled="disabled(date, mode)" 
 									 close-text="Close"/>
 	            <span class="input-group-btn">
@@ -36,7 +36,7 @@
 				<div class="controls col-sm-10">
 					<div class="input-group">
 	    	    <input type="text" class="form-control" datepicker-popup="{{format}}" 
-    							 data-ng-model="editEndDate" is-open="edOpened"  
+    							 data-ng-model="activity.EndDate" is-open="edOpened"  
 									 datepicker-options="dateOptions" date-disabled="disabled(date, mode)" 
 									 close-text="Close"/>
 	            <span class="input-group-btn">
@@ -50,7 +50,7 @@
 			<div class="form-group">
 				<label class="col-xs-2 control-label shift-down">Start Time</label>
 				<div class="col-sm-10">
-					<timepicker ng-model="editStartTime" ng-change="changed()" hour-step="1" 
+					<timepicker ng-model="activity.StartDate" ng-change="changed()" hour-step="1" 
 											minute-step="1" show-meridian="false">
 					</timepicker>
 				</div>
@@ -58,7 +58,7 @@
 			<div class="form-group">
 				<label class="col-xs-2 control-label shift-down">End Time</label>
 				<div class="col-sm-10">
-					<timepicker ng-model="editEndTime" ng-change="changed()" hour-step="1" 
+					<timepicker ng-model="activity.EndDate" ng-change="changed()" hour-step="1" 
 											minute-step="1" show-meridian="false">
 					</timepicker>
 				</div>
