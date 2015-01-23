@@ -17,6 +17,8 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
+				'public/lib/moment/moment.js',
+				'public/lib/angular-moment/angular-moment.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js', 
 				'public/lib/angular-cookies/angular-cookies.js', 

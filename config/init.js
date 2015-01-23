@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var glob = require('glob'),
-	chalk = require('chalk');
-
+	chalk = require('chalk'),
+	moment = require('moment');
 /**
  * Module init function.
  */
@@ -29,5 +29,6 @@ module.exports = function() {
 			console.log(chalk.black.bgWhite('Application loaded using the "' + process.env.NODE_ENV + '" environment configuration'));
 		}
 	});
-
+	
+	moment().format();
 };
