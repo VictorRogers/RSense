@@ -1,10 +1,27 @@
 'use strict';
 
 angular.module('sentry-activity').controller('SentryActivityController',
-['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'SentryActivity', 
-	function($scope, $stateParams, $location, Users, Authentication, SentryActivity) {
+['$scope', '$stateParams', '$location', 'Users', 'Socket',
+ 'Authentication', 'SentryActivity', 
+	function($scope, $stateParams, $location, Users, Socket,
+					 Authentication, SentryActivity) {
 		$scope.authentication = Authentication;
 		var user = new Users($scope.user);		
+
+		//Update on new activity
+		Socket.on('activity.created', function(activity) {
+			$scope.find();
+		});
+
+		//Update on edited activity
+		Socket.on('activity.updated', function(activity) {
+			$scope.find();
+		});
+
+		//Update on deleted activity
+		Socket.on('activity.deleted', function(activity) {
+			$scope.find();
+		});
 
 		//Sentry Active Functions
 		$scope.onDuty = function() {	

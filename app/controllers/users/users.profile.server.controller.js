@@ -36,6 +36,8 @@ exports.update = function(req, res) {
 					if (err) {
 						res.status(400).send(err);
 					} else {
+						var socketio = req.app.get('socketio');
+						socketio.sockets.emit('user.updated', user);
 						res.json(user);
 					}
 				});

@@ -86,6 +86,8 @@ user.displayName = user.firstName + ' ' + user.lastName;
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var socketio = req.app.get('socketio');
+			socketio.sockets.emit('user.updated', user);
 			res.json(user);
 		}
 	});	
