@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('sentry-activity').controller('SentryActivityController',
-['$scope', '$stateParams', '$location', 'Users', 'Socket',
- 'Authentication', 'SentryActivity', 
-	function($scope, $stateParams, $location, Users, Socket,
-					 Authentication, SentryActivity) {
+['$scope', '$stateParams', '$location', '$modal', '$log', 
+	'Users', 'Socket', 'Authentication', 'SentryActivity', 
+	function($scope, $stateParams, $location, $modal,  $log,
+					 Users, Socket, Authentication, SentryActivity) {
 		$scope.authentication = Authentication;
 		var user = new Users($scope.user);		
 
@@ -23,171 +23,11 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			$scope.find();
 		});
 
-		//Sentry Active Functions
-		$scope.onDuty = function() {	
-			user.sentryStatus = 'Active';
-			user.sentryCurrentActivityStartDate = moment();
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-		};
-
-		$scope.offDuty = function() {
-			$location.path('sentry-activity');
-			user.sentryStatus = 'Inactive';
-			user.sentryCurrentActivityStartDate = moment();
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-		};
-		
-		//Patrol Functions
-		$scope.beginPatrol = function() {
-		  $location.path('sentry-activity');	
-			user.sentryStatus = 'Patrolling';	
-			user.sentryCurrentActivityStartDate = moment(); 	
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-		};
-		
-		$scope.endPatrol = function() {
-			$location.path('sentry-activity');
-			user.sentryCurrentActivityEndDate = moment();
-
-			user.sentryStatus = 'Active';
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-			
-			var end = moment(user.sentryCurrentActivityEndDate);
-			var start = moment(Authentication.user.sentryCurrentActivityStartDate);
-
-			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
-							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
-			var d = moment.duration(ms);
-			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
-
-			var activity = new SentryActivity({
-				Action: 'Patrol',
-				StartDate: Authentication.user.sentryCurrentActivityStartDate,
-				EndDate: user.sentryCurrentActivityEndDate,
-				Duration: output,
-			});
-			
-			activity.$save(function(response) {
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		//Monitoring Functions
-		$scope.beginMonitor = function() {
-		  $location.path('sentry-activity');	
-			user.sentryStatus = 'Monitoring';	
-			user.sentryCurrentActivityStartDate = moment(); 
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-		};	
-
-		$scope.endMonitor = function() {
-			$location.path('sentry-activity');
-			user.sentryCurrentActivityEndDate = moment();
-			user.sentryStatus = 'Active';
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-
-			var end = moment(user.sentryCurrentActivityEndDate);
-			var start = moment(Authentication.user.sentryCurrentActivityStartDate);
-
-			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
-							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
-			var d = moment.duration(ms);
-			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
-
-			var activity = new SentryActivity({
-				Action: 'Monitor',
-				StartDate: Authentication.user.sentryCurrentActivityStartDate,
-				EndDate: user.sentryCurrentActivityEndDate,
-				Duration: output,
-			});
-
-			activity.$save(function(response) {
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		//Break Functions
-		$scope.beginBreak = function() {
-		  $location.path('sentry-activity');	
-			user.sentryStatus = 'Break';	
-			user.sentryCurrentActivityStartDate = moment(); 
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-		};	
-
-		$scope.endBreak = function() {
-			$location.path('sentry-activity');
-			user.sentryCurrentActivityEndDate = moment();
-			user.sentryStatus = 'Active';
-
-			user.$update(function(response) {
-				$scope.success = true;
-				Authentication.user = response;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
-		
-			var end = moment(user.sentryCurrentActivityEndDate);
-			var start = moment(Authentication.user.sentryCurrentActivityStartDate);
-
-			var ms = moment(end, "DD/MM/YYYY HH:mm:ss")
-							 .diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
-			var d = moment.duration(ms);
-			var output = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");	
-
-			var activity = new SentryActivity({
-				Action: 'Break',
-				StartDate: Authentication.user.sentryCurrentActivityStartDate,
-				EndDate: user.sentryCurrentActivityEndDate,
-				Duration: output,
-			});
-			
-			activity.$save(function(response) {
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+		$scope.openSentryActivityReporter = function() {
+			var modalInstance = $modal.open({
+				templateUrl: 'modules/sentry-activity/views/sentry-activity-reporter.client.view.html',
+				controller: 'SentryActivityReporterController',
+				size: 'sm'
 			});
 		};
 
@@ -291,6 +131,6 @@ angular.module('sentry-activity').controller('SentryActivityController',
 	
 	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	  $scope.format = 'MM-dd-yy';
-		//=============================================================================
+		//=========================================================================
 	}
 ]);

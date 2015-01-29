@@ -1,0 +1,56 @@
+<div class="modal-header">
+	<h3 class="modal-title text-center">Report Activity</h3>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal text-center">
+		<div class="form-group">
+			<button type="button" class="btn btn-primary" 
+							data-ng-click="onDuty()"
+							data-ng-show="authentication.user.sentryStatus == 'Inactive'">
+			On Duty
+			</button>
+			<button type="button" class="btn btn-primary" 
+							data-ng-click="beginPatrol()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Patrol
+			</button>
+			<button type="button" class="btn btn-primary" 
+							data-ng-click="endPatrol()"
+							data-ng-show="authentication.user.sentryStatus == 'Patrolling'">
+			Stop Patrolling
+			</button>
+			<button type="button" class="btn btn-primary" 
+							data-ng-click="beginMonitor()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Monitor
+			</button>
+			<button type="button" class="btn btn-primary" 
+							data-ng-click="endMonitor()"
+							data-ng-show="authentication.user.sentryStatus == 'Monitoring'">
+			Stop Monitoring
+			</button>
+			<button type="button" class="btn btn-primary"
+							data-ng-click="beginBreak()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Break
+			</button>
+			<button type="button" class="btn btn-primary"
+							data-ng-click="endBreak()"
+							data-ng-show="authentication.user.sentryStatus == 'Break'">
+			End Break
+			</button>
+		</div>
+		<br>
+		<div class="form-group top-buffer">
+			<button type="button" class="btn btn-primary"
+							data-ng-click="offDuty()"
+							data-ng-show="authentication.user.sentryStatus == 'Active'">
+			Off Duty
+			</button>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" data-ng-click="cancel()">Cancel</button>	
+</div>
+
