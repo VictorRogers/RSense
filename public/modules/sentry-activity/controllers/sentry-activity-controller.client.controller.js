@@ -26,6 +26,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		//Sentry Active Functions
 		$scope.onDuty = function() {	
 			user.sentryStatus = 'Active';
+			user.sentryCurrentActivityStartDate = moment();
 
 			user.$update(function(response) {
 				$scope.success = true;
@@ -38,6 +39,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		$scope.offDuty = function() {
 			$location.path('sentry-activity');
 			user.sentryStatus = 'Inactive';
+			user.sentryCurrentActivityStartDate = moment();
 
 			user.$update(function(response) {
 				$scope.success = true;
