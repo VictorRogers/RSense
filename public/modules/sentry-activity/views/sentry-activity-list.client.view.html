@@ -3,7 +3,7 @@
 			<h2>Sentry Activities</h2>
 		</div>
 		<div class="text-center">
-			<button class="btn btn-default" 
+			<button class="btn btn-default btn-lg" 
 							data-ng-click="openSentryActivityReporter()">
 				Report
 			</button>
@@ -28,6 +28,9 @@
 				<th>
 					Date
 				</th>
+				<th>
+					Duration
+				</th>
 			</tr>
 			<tr data-ng-href="/#!/" data-ng-repeat="activity in activities | 
 				  filter: searchActivities | pagination: currentPage * pageSize | 
@@ -44,8 +47,14 @@
 				</td>
 				<td>
 					<a href="#!/sentry-activity/{{activity._id}}" class="a-custom">
-						<span>{{activity.StartDate | amCalendar}}</span>
+						<span data-ng-bind="activity.StartDate | 
+									amDateFormat: 'MM-DD-YY,  h:mm a'">
+						</span>
 					</a>
+				</td>
+				<td>
+					<a href="#!/sentry-activity/{{activity._id}}" class="a-custom">
+						<span data-ng-bind="activity.Duration"></span>
 				</td>
 			</tr>
 		</table>
