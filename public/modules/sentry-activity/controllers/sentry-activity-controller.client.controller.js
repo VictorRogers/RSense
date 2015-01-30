@@ -51,10 +51,6 @@ angular.module('sentry-activity').controller('SentryActivityController',
 			});
 		};
 
-		$scope.showMoreResults = function() {
-			$scope.activitiesQTY += '10';
-		};
-
 		$scope.remove = function(activity) {
 			if (activity) {
 				activity.$remove();
