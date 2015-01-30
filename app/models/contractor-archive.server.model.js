@@ -10,8 +10,21 @@ var mongoose = require('mongoose'),
  * ContractorArchive Schema
  */
 var ContractorArchiveSchema = new Schema({
-	// ContractorArchive model fields   
-	// ...
+	contractorName: {
+		type: String
+	},
+	StartDate: {
+		type: Date
+	},
+	EndDate: {
+		type: Date
+	},
+	Duration: {
+	},
+	Sentry: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}
 });
 
 mongoose.model('ContractorArchive', ContractorArchiveSchema);

@@ -10,8 +10,19 @@ var mongoose = require('mongoose'),
  * Contractor Schema
  */
 var ContractorSchema = new Schema({
-	// Contractor model fields   
-	// ...
+	contractorName: {
+		type: String
+	},
+	contractorStatus: {
+		type: String,
+		enum: ['Off Site', 'On Site']
+	},
+	contractorActivityStartDate: {
+		type: Date
+	},
+	contractorActivityEndDate: {
+		type: Date
+	}
 });
 
 mongoose.model('Contractor', ContractorSchema);
