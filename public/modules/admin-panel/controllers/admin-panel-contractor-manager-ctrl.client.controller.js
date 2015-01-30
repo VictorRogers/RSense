@@ -1,9 +1,20 @@
 'use strict';
 
 angular.module('admin-panel').controller('AdminPanelContractorManagerCTRL', 
-	['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'ManageContractors',
-	function($scope, $stateParams, $location, Users, Authentication, ManageContractors) {
+	['$scope', '$stateParams', '$location', '$modal', '$log', 'Socket',
+	 'Users', 'Authentication', 'ManageContractors',
+	function($scope, $stateParams, $location, $modal, $log, Socket, 
+					 Users, Authentication, ManageContractors) {
+
 		$scope.authentication = Authentication;
+
+		$scope.openContractorCreator = function() {
+			var modalInstance = $modal.open({
+				templateUrl: 'modules/admin-panel/views/create-contractor.client.view.html',
+				controller: 'AdminPanelContractorCreatorCTRL',
+				size: 'sm'
+			});
+		};
 
 		$scope.changeView = function(option) {
 			$location.path(option);
@@ -36,23 +47,12 @@ angular.module('admin-panel').controller('AdminPanelContractorManagerCTRL',
 			});
 		};
 
-		//Create a contractor
-		$scope.createContractor = function() {
-			var contractor = new Contractor({
-				contractorName: $scope.contractorName,
-			});
-
-			contractor.$save(function(response) {
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+		$scope.possibleStatus = ['Off Site', 'On Site'];
 
 		//Edit a contractor
 		$scope.editContractor = function() {
 			var contractor = $scope.managedContractor;
 			contractor.contractorStatus = $scope.editStatus;
-			contractor.contractorActivityStartDate = moment();
 			
 			contractor.$update(function() {
 				$location.path('manage-contractors');
@@ -61,6 +61,22 @@ angular.module('admin-panel').controller('AdminPanelContractorManagerCTRL',
 			});
 		};
 
+		$scope.remove = function(managedContractor) {
+			if (managedContractor) {
+				managedContractor.$remove();
+
+				for (var i in $scope.contractorsList) {
+					if ($scope.contractorsList[i] === managedContractor) {
+						$scope.contractorsList.splice(i, 1);
+					}
+				}
+				$location.path('manage-contractors');
+			} else {
+				$scope.managedContractor.$remove(function() {
+					$location.path('manage-contractors');
+				});
+			}
+		};
 	
 		//Pagination Logic
 		//=========================================================================
@@ -70,7 +86,6 @@ angular.module('admin-panel').controller('AdminPanelContractorManagerCTRL',
 		$scope.pages = function() {
 			return Math.ceil($scope.contractorsList.length / $scope.pageSize);
 		};
-		//=========================================================================
-	
+		//=========================================================================	
 	}
 ]);

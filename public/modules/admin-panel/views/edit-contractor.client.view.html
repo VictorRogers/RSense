@@ -1,3 +1,44 @@
-<section>
-	This is the Edit contractor
+<section data-ng-controller="AdminPanelContractorManagerCTRL" data-ng-init="findOneContractor()">
+	<div class="page-header text-center">
+		<h2>Contractor Manager</h2>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Select Menu</label>
+			<div class="col-sm-10">
+				<select class="form-control" data-ng-model="selectedOption" 
+								data-ng-change="changeView(selectedOption)">	
+					<option value="manage-users">Users</option>
+					<option value="manage-contractors">Contractors</option>
+				</select>
+			</div>
+		</div>
+	<br><br><br><br>
+
+	<form name="editForm" class="form-horizontal"
+				data-ng-submit="editContractor(editContractor.$valid)" novalidate>
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="contractor">Contractor Name</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="contractorName" name="contractorName" class="form-control"
+								 data-ng-model="managedContractor.contractorName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="status">Status</label>
+				<div class="controls col-sm-10">
+					<select class="form-control" data-ng-model="editStatus"
+									data-ng-options="status as status for status in possibleStatus">	
+					</select>
+				</div>
+			</div>
+			<div class="form-group text-center">
+				<input type="submit" value="Update" class="btn btn-default">
+			</div>
+			<div data-ng-show="error" class="text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</fieldset>
+	</form>
 </section>

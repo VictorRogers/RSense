@@ -42,7 +42,7 @@ exports.update = function(req, res) {
 
 	contractor = _.extend(contractor, req.body);
 
-	activity.save(function(err) {
+	contractor.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

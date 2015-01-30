@@ -15,16 +15,13 @@ var ContractorSchema = new Schema({
 	},
 	contractorStatus: {
 		type: String,
-		enum: ['Off Site', 'On Site'],
-		default: 'Off Site'
+		enum: ['Off Site', 'On Site']
 	},
 	contractorActivityStartDate: {
-		type: Date,
-		default: Date.now
+		type: Date
 	},
 	contractorActivityEndDate: {
-		type: Date,
-		default: Date.now
+		type: Date
 	}
 });
 

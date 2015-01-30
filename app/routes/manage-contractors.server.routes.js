@@ -12,7 +12,8 @@ module.exports = function(app) {
 
 	app.route('/manage-contractors/:managedContractorId')
 		.get(users.hasAuthorization(['admin']), contractor.read)
-		.put(users.hasAuthorization(['admin']), contractor.update);
+		.put(users.hasAuthorization(['admin']), contractor.update)
+		.delete(users.hasAuthorization(['admin']), contractor.delete);
 
 	app.param('managedContractorId', contractor.contractorByID);
 };
