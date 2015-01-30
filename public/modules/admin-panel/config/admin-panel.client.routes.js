@@ -5,8 +5,12 @@ angular.module('admin-panel').config(['$stateProvider',
 	function($stateProvider) {
 		// Admin panel state routing
 		$stateProvider.
+		state('edit-contractor', {
+			url: '/manage-contractors/:managedContractorId/edit',
+			templateUrl: 'modules/admin-panel/views/edit-contractor.client.view.html'
+		}).
 		state('manage-contractor', {
-			url: '/manage-contractor',
+			url: '/manage-contractors/:managedContractorId',
 			templateUrl: 'modules/admin-panel/views/manage-contractor.client.view.html'
 		}).
 		state('manage-contractors', {
