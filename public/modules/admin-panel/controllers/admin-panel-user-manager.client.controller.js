@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('admin-panel').controller('AdminPanelUserManagerCTRL', 
-['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'AdminPanel', 'ManageUsers',
+	['$scope', '$stateParams', '$location', 'Users', 'Authentication', 'ManageUsers',
 	function($scope, $stateParams, $location, Users, Authentication, AdminPanel, ManageUsers) {
 		$scope.authentication = Authentication;
+	
 		$scope.changeView = function(option) {
 			$location.path(option);		
 		};
