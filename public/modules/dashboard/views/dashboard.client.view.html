@@ -17,7 +17,7 @@
 				Time	
 			</th>
 		</tr>
-		<tr data-ng-repeat="sentry in sentries">
+		<tr data-ng-repeat="sentry in sentries | orderBy: sentry.displayName">
 			<td>
 				<span data-ng-bind="sentry.displayName"></span>
 			</td>

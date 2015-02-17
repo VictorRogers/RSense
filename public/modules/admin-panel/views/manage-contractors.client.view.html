@@ -37,7 +37,9 @@
 				Contractor
 			</th>
 		</tr>
-		<tr data-ng-repeat="contractor in contractorsList | filter: searchContractors |
+		<tr data-ng-repeat="contractor in contractorsList |
+												filter: searchContractors |
+												orderBy: contractor.contractorName |
 												pagination: currentPage * pageSize |
 												limitTo: pageSize">
 			<td>

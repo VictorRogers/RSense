@@ -32,6 +32,7 @@
 				</th>
 			</tr>
 			<tr data-ng-repeat="user in usersList | filter: searchUsers |
+													orderBy: user.displayName |
 													pagination: currentPage * pageSize |
 													limitTo: pageSize">
 				<td>

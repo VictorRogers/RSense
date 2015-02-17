@@ -11,7 +11,8 @@
 				<select class="form-control" data-ng-model="selectedContractor"	
 								data-ng-options="contractor as 
 																 contractor.contractorName for 
-																 contractor in contractors">
+																 contractor in contractors |
+																 orderBy: contractor.contractorName">
 				</select>
 			</div>
 			<button type="button" class="btn btn-primary top-buffer"
