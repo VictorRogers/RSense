@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * ContractorArchive Schema
  */
 var ContractorArchiveSchema = new Schema({
-	contractorName: {
+	ContractorName: {
 		type: String
 	},
 	StartDate: {
@@ -21,7 +21,7 @@ var ContractorArchiveSchema = new Schema({
 	},
 	Duration: {
 	},
-	Sentry: {
+	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
 	}

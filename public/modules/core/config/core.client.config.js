@@ -5,7 +5,7 @@ angular.module('core').run(['Menus',
 function(Menus) {
   // Set top bar menu items
 	Menus.addMenuItem('topbar', 'Personnel', 'personnel', 'dropdown');
-	Menus.addSubMenuItem('topbar', 'personnel', 'Contractors', '/#!/');
+	Menus.addSubMenuItem('topbar', 'personnel', 'Contractors', 'contractor-archive');
 	Menus.addSubMenuItem('topbar', 'personnel', 'Traffic', '/#!/');
 	Menus.addSubMenuItem('topbar', 'personnel', 'Visitors', '/#!/');
 

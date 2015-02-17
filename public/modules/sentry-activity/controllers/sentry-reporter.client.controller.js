@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('sentry-activity').controller('SentryActivityReporterController'
-	, ['$scope', '$modalInstance', 'Users', 'Authentication', 'SentryActivity',
+angular.module('sentry-activity').controller('SentryActivityReporterController'	, 
+		['$scope', '$modalInstance', 'Users', 'Authentication', 'SentryActivity',
 	function($scope, $modalInstance, Users, Authentication, SentryActivity) {
 		$scope.authentication = Authentication;
 		var user = new Users($scope.user);

@@ -13,8 +13,9 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var contractorArchive = new ContractorArchive(req.body);
+	contractorArchive.user = req.user;
 
-	contractor.save(function(err) {
+	contractorArchive.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -42,7 +43,7 @@ exports.update = function(req, res) {
 
 	contractorArchive = _.extend(contractorArchive, req.body);
 
-	contractor.save(function(err) {
+	contractorArchive.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

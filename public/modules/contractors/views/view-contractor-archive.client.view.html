@@ -1,0 +1,47 @@
+<section data-ng-controller="ContractorArchiveController" data-ng-init="findOne()">
+	<div class="page-header text-center">
+		<h2>Contractor Log</h2>
+	</div>
+	<ul class="list-group top-buffer">
+		<li class="list-group-item clearfix">
+			<label>Contractor Name: </label>
+			<span data-ng-bind="contractorArchive.ContractorName"></span>	
+		</li>
+		<li class="list-group-item">
+			<label>Start Date: </label>
+			<span data-ng-bind="contractorArchive.StartDate |
+						amDateFormat: 'M-DD-YY'"></span>
+		</li>
+		<li class="list-group-item">
+			<label>End Date: </label>
+			<span data-ng-bind="contractorArchive.EndDate | 
+						amDateFormat: 'M-DD-YY'"></span>
+		</li>
+		<li class="list-group-item">
+			<label>Start Time: </label>
+			<span data-ng-bind="contractorArchive.StartDate |
+						amDateFormat: 'h:mm a'"></span>
+		</li>
+		<li class="list-group-item">
+			<label>End Time: </label>
+			<span data-ng-bind="contractorArchive.EndDate | 
+						amDateFormat: 'h:mm a'"></span> 
+		</li>
+		<li class="list-group-item">
+			<Label>Duration: </label>
+			<span data-ng-bind="contractorArchive.Duration"></span>
+		</li>
+		<li class="list-group-item">
+			<label>Reported By: </label>
+			<span data-ng-bind="contractorArchive.user.displayName"></span>	
+		</li>
+	</ul>
+	<div class="text-center">
+		<a class="btn btn-default" href="#!/contractor-archive/{{contractorArchive._id}}/edit">
+			Edit <i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-default" data-ng-click="remove(contractorArchive)">
+			Delete <i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+</section>

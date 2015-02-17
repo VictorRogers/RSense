@@ -1,0 +1,70 @@
+<section data-ng-controller="ContractorArchiveController" data-ng-init="find()">
+	<div class="page-header text-center">
+		<h2>Contractors</h2>
+	</div>
+	<div class="text-center">
+		<button class="btn btn-default btn-lg" 
+						data-ng-click="openContractorReporter()">
+		Report
+		</button>
+	</div>
+	<br>
+	<form class="form-horizontal">
+		<div class="form-group top-buffer">
+			<label class="control-label col-sm-2" for="search">Search</label>
+			<div class="controls col-sm-8">
+				<input class="form-control" data-ng-model="searchContractorArchives">
+			</div>
+		</div>
+	</form>
+	<table class="table table-striped top-buffer">
+		<tr>
+			<th>
+				Contractor Name	
+			</th>
+			<th>
+				Date	
+			</th>
+			<th>
+				Duration	
+			</th>
+		</tr>
+		<tr data-ng-href="/#!/" data-ng-repeat="
+				contractorArchive in contractorArchives | 
+			  filter: searchContractorArchives | pagination: currentPage * pageSize | 
+				limitTo: pageSize">
+			<td>
+				<a href="#!/contractor-archive/{{contractorArchive._id}}" 
+					 class="a-custom">
+				<span data-ng-bind="contractorArchive.ContractorName"></span>
+				</a>
+			</td>
+			<td>
+				<a href="#!/contractor-archive/{{contractorArchive._id}}" 
+					 class="a-custom">
+					<span data-ng-bind="contractorArchive.StartDate | 
+															amDateFormat: 'MM-DD-YY,  h:mm a'">
+					</span>
+				</a>
+			</td>
+			<td>
+				<a href="#!/contractor-archive/{{contractorArchive._id}}"
+					 class="a-custom">
+					<span data-ng-bind="contractorArchive.Duration"></span>
+			</td>
+		</tr>
+	</table>
+	<div class="form-group text-center top-buffer">
+		<button type="button" class="btn btn-default"
+						data-ng-disabled="currentPage == 0"
+						data-ng-click="currentPage = currentPage - 1">
+		Previous
+		</button>
+		<span>Page {{currentPage + 1}} of {{pages()}}</span>
+		<button type="button" class="btn btn-default"
+						data-ng-disabled="currentPage >= contractorArchives.length/pageSize - 1"
+						data-ng-click="currentPage = currentPage + 1">
+		Next
+		</button>
+	</div>
+</section>
