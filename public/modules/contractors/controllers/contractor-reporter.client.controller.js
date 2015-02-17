@@ -33,12 +33,6 @@ angular.module('contractors').controller('ContractorReporterController',
 			var contractor = $scope.selectedContractor;
 			contractor.contractorStatus = 'Off Site';
 			contractor.contractorActivityEndDate = moment();
-
-			contractor.$update(function(response) {
-				$scope.success = true;
-			}, function(response) {
-				$scope.error = response.data.message;
-			});
 			
 			var end = moment(contractor.contractorActivityEndDate);
 			var start = moment(contractor.contractorActivityStartDate);
@@ -49,14 +43,22 @@ angular.module('contractors').controller('ContractorReporterController',
 
 			var contractorArchive = new ContractorArchive.contractorArchive({
 				ContractorName: $scope.selectedContractor.contractorName,
-				StartDate: $scope.selectedContractor.contractorActivityStartDate,
-				EndDate: $scope.selectedContractor.contractorActivityEndDate,
+				StartDate: start,
+				EndDate: end,
 				Duration: output,
 			});
 
 			contractorArchive.$save(function(response) {
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
+			});
+			
+			contractor.contractorActivityStartDate = moment();
+
+			contractor.$update(function(response) {
+				$scope.success = true;
+			}, function(response) {
+				$scope.error = response.data.message;
 			});
 		};
 	}

@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('dashboard').controller('DashboardController', 
-['$scope', '$stateParams', '$location', 'Users', 'Socket', 'Authentication', 'Dashboard',
-	function($scope, $stateParams, $location, Users, Socket, Authentication, Dashboard) {
+['$scope', '$stateParams', '$location', 'Users', 'Socket', 'Authentication',
+	'Dashboard', 'ContractorArchive',
+	function($scope, $stateParams, $location, Users, Socket, Authentication,
+					 Dashboard, ContractorArchive) {
 		$scope.authentication = Authentication;
 
 		//Update on new user
@@ -17,6 +19,10 @@ angular.module('dashboard').controller('DashboardController',
 
 		$scope.findSentries = function() {
 			$scope.sentries = Dashboard.query();
+		};
+
+		$scope.findContractors = function() {
+			$scope.contractors = ContractorArchive.contractor.query();
 		};
 	}
 ]);

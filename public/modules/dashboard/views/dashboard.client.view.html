@@ -1,32 +1,70 @@
-<section data-ng-controller="DashboardController" data-ng-init="findSentries()">
+<section data-ng-controller="DashboardController" 
+				 data-ng-init="findSentries(); findContractors()">
 	<div class="page-header text-center">
-		<h1>WCCC</h1>
+		<h2>RSense Dashboard</h2>
 	</div>
-	<div class="text-center">
-		<h3>Sentries</h3>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+		<div class="panel panel-default top-buffer">
+			<div class="panel-heading"><strong>Sentries</strong></div>	
+			<table class="table table-striped">
+				<tr>
+					<th>
+						Name	
+					</th>
+					<th>
+						Status
+					</th>
+					<th>
+						Time	
+					</th>
+				</tr>
+				<tr data-ng-repeat="sentry in sentries |
+														orderBy: sentry.displayName">
+					<td>
+						<span data-ng-bind="sentry.displayName"></span>
+					</td>
+					<td>
+						<span data-ng-bind="sentry.sentryStatus"></span>
+					</td>
+					<td>
+						<span am-time-ago="sentry.sentryCurrentActivityStartDate"></span>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</div>
+	<div class="col-md-6">
+		<div class="panel panel-default top-buffer">
+			<div class="panel-heading"><strong>Contractors</strong></div>
+			<table class="table table-striped">
+				<tr>
+					<th>
+						Name
+					</th>
+					<th>
+						Status
+					</th>
+					<th>
+						Time
+					</th>
+				</tr>
+				<tr data-ng-repeat="contractor in contractors |
+														orderBy: contractor.contractorName">
+					<td>
+						<span data-ng-bind="contractor.contractorName"></span>
+					</td>
+					<td>
+						<span data-ng-bind="contractor.contractorStatus"></span>
+					</td>
+					<td>
+						<span am-time-ago="contractor.contractorActivityStartDate"></span>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	<table class="table table-striped top-buffer">
-		<tr>
-			<th>
-				Sentry
-			</th>
-			<th>
-				Status
-			</th>
-			<th>
-				Time	
-			</th>
-		</tr>
-		<tr data-ng-repeat="sentry in sentries | orderBy: sentry.displayName">
-			<td>
-				<span data-ng-bind="sentry.displayName"></span>
-			</td>
-			<td>
-				<span data-ng-bind="sentry.sentryStatus"></span>
-			</td>
-			<td>
-				<span am-time-ago="sentry.sentryCurrentActivityStartDate"></span>
-			</td>
-		</tr>
-	</table>
+</div>
+</div>
 </section>
