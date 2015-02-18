@@ -146,8 +146,8 @@ module.exports = function(db) {
 		console.log('Securely using https protocol');
 
 		// Load SSL key and certificate
-		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
-		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+		var privateKey = fs.readFileSync('./config/sslcerts/rsense.io.key', 'utf8');
+		var certificate = fs.readFileSync('./config/sslcerts/rsense_io.crt', 'utf8');
 
 		// Create HTTPS Server
 		var httpsServer = https.createServer({
