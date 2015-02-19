@@ -15,12 +15,13 @@ var EmployeeSchema = new Schema({
 		required: 'Please enter an employee name'
 	},
 	EmployeeSupervisor: {
-		type: String,
-		required: 'Please enter a supervisor name'
+		type: String
+	},
+	EmployeeContactNumber: {
+		type: String
 	},
 	EmployeeStatus: {
 		type: String,
-		required: 'Please select a status',
 		enum: ['Active', 'LOA', 'Suspended', 'Terminated']
 	},
 	//Status = LOA implies EmployeeDate is the date when the employee will return
@@ -28,8 +29,7 @@ var EmployeeSchema = new Schema({
 	//Status = Terminated implies EmployeeDate is the date of termination
 	//Status = Active no date will be displayed
 	EmployeeDate: {
-		type: Date,
-		required: 'Please select a date'
+		type: Date
 	}
 });
 

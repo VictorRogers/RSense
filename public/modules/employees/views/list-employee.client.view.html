@@ -34,6 +34,9 @@
 					</tr>
 					<tr data-ng-href="/#!/"
 							data-ng-repeat="employee in employees |
+															filter: searchEmployees |
+															pagination: currentPage * pageSize |
+															limitTo: pageSize |
 															orderBy: employee.EmployeeName">
 						<td>
 							<a href="#!/employee/{{employee._id}}" class ="a-custom">

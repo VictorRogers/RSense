@@ -14,6 +14,7 @@ angular.module('employees').controller('CreateEmployeeController', ['$scope',
 			var employee = new Employee({
 				EmployeeName: $scope.EmployeeName,
 				EmployeeSupervisor: $scope.EmployeeSupervisor,
+				EmployeeContactNumber: $scope.EmployeeContactNumber,
 				EmployeeStatus: $scope.EmployeeStatus,
 				EmployeeDate: $scope.EmployeeDate
 			});
