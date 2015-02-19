@@ -78,7 +78,7 @@ exports.delete = function(req, res) {
  * List of Employees
  */
 exports.list = function(req, res) {
-	Employee.find().sort('-EmployeeName')
+	Employee.find().sort('EmployeeName')
 	.exec(function(err, employee) {
 		if (err) {
 			return res.status(400).send({

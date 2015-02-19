@@ -33,8 +33,7 @@
 							data-ng-repeat="employee in employees |
 															filter: searchEmployees |
 															pagination: currentPage * pageSize |
-															limitTo: pageSize |
-															orderBy: employee.EmployeeName">
+															limitTo: pageSize">
 						<td>
 							<a href="#!/employee/{{employee._id}}" class ="a-custom">
 							<span data-ng-bind="employee.EmployeeName"></span>
