@@ -1,0 +1,32 @@
+<section data-ng-controller="EmployeesController" data-ng-init="findOne()">
+	<div class="page-header text-center">
+		<h2>Employee</h2>
+	</div>
+	<ul class="list-group top-buffer">
+		<li class="list-group-item clearfix">
+			<label>Employee Name: </label>
+			<span data-ng-bind="employee.EmployeeName"></span>	
+		</li>
+		<li class="list-group-item">
+			<label>Supervisor: </label>
+			<span data-ng-bind="employee.EmployeeSupervisor"></span>
+		</li>
+		<li class="list-group-item">
+			<label>Status: </label>
+			<span data-ng-bind="employee.EmployeeStatus"></span>
+		</li>
+		<li class="list-group-item">
+			<label>Date: </label>
+			<span data-ng-bind="employee.EmployeeDate |
+													amDateFormat: 'M-DD-YY'"></span>
+		</li>
+	</ul>
+	<div class="text-center">
+		<a class="btn btn-default" href="#!/employee/{{employee._id}}/edit">
+			Edit <i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-default" data-ng-click="remove(employee)">
+			Delete <i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+</section>

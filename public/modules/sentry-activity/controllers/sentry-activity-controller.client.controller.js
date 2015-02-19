@@ -96,7 +96,7 @@ angular.module('sentry-activity').controller('SentryActivityController',
 		};
 
 		//Datepicker Controls
-		//===========================================================================
+		//=========================================================================
 		$scope.today = function() {
 	    $scope.dt = moment();
 	  };

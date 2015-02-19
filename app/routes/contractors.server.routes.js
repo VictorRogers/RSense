@@ -11,7 +11,7 @@ module.exports = function(app) {
 		.post(users.hasAuthorization(['sentry', 'admin']), archive.create);
 
 	app.route('/contractor-archive/:contractorArchiveId')
-		.get(users.hasAuthorization(['sentry', 'admin']), archive.read)
+		.get(users.hasAuthorization(['user', 'sentry', 'admin']), archive.read)
 		.put(users.hasAuthorization(['sentry', 'admin']), archive.update)
 		.post(users.hasAuthorization(['sentry', 'admin']), archive.create)
 		.delete(users.hasAuthorization(['sentry', 'admin']), archive.delete);
@@ -20,7 +20,7 @@ module.exports = function(app) {
 		.get(users.hasAuthorization(['sentry', 'admin']), contractor.list);
 
 	app.route('/contractor-archive-report/:contractorId')
-		.get(users.hasAuthorization(['sentry', 'admin']), contractor.read)
+		.get(users.hasAuthorization(['user', 'sentry', 'admin']), contractor.read)
 		.put(users.hasAuthorization(['sentry', 'admin']), contractor.update)
 		.post(users.hasAuthorization(['sentry', 'admin']), archive.create);
 

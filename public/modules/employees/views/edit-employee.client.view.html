@@ -1,0 +1,85 @@
+<section data-ng-controller="EmployeesController" data-ng-init="findOne()">
+	<div class="page-header text-center">
+		<h2>Employee Editor</h2>
+	</div>
+
+	<form name="editForm" class="form-horizontal"
+				data-ng-submit="editEmployee(editForm.$valid)" novalidate>
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="contractor">
+					Employee Name
+				</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="EmployeeName" name="EmployeeName" 
+								 class="form-control"
+								 data-ng-model="employee.EmployeeName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="contractor">
+					Employee Supervisor
+				</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="EmployeeName" name="EmployeeName" 
+								 class="form-control"
+								 data-ng-model="employee.EmployeeName">
+				</div>
+			</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Status</label>
+				<div class="col-sm-10">
+					<select class="form-control" data-ng-model="employee.EmployeeStatus" 
+									required>
+						<option value="Active">Active</option>
+						<option value="LOA">Leave of Absence</option>
+						<option value="Suspended">Suspended</option>
+						<option value="Terminated">Terminated</option>
+					</select>
+				</div>
+		</div>
+			<div class="form-group">
+				<label class="col-sm-2" for="EmployeeDate"
+							 data-ng-show="employee.EmployeeStatus == 'Active'">
+					Active Date
+				</label>
+				<label class="col-sm-2" for="EmployeeDate"
+							 data-ng-show="employee.EmployeeStatus == 'LOA'">
+					Return Date
+				</label>
+				<label class="col-sm-2" for="EmployeeDate"
+							 data-ng-show="employee.EmployeeStatus == 'Suspended'">
+					Suspension Date
+				</label>
+				<label class="col-sm-2" for="EmployeeDate"
+							 data-ng-show="employee.EmployeeStatus == 'Terminated'">
+					Termination Date
+				</label>
+				<div class="controls col-sm-10">
+					<div class="input-group">
+	    	    <input type="text" class="form-control" 
+									 datepicker-popup="{{format}}" 
+    							 data-ng-model="employee.EmployeeDate" is-open="EDOpened"  
+									 datepicker-options="dateOptions" 
+									 date-disabled="disabled(date, mode)" 
+									 close-text="Close"/>
+	            <span class="input-group-btn">
+	              <button type="button" class="btn btn-default" 
+												ng-click="openEmployeeDate($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+	            </span>
+	      	</div>
+				</div>
+			</div>			
+			<div class="form-group text-center">
+				<input type="submit" value="Update" class="btn btn-default">
+			</div>
+			<div data-ng-show="error" class="text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</fieldset>
+	</form>
+
+
+</section>

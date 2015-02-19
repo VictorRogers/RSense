@@ -6,6 +6,7 @@ function(Menus) {
   // Set top bar menu items
 	Menus.addMenuItem('topbar', 'Personnel', 'personnel', 'dropdown');
 	Menus.addSubMenuItem('topbar', 'personnel', 'Contractors', 'contractor-archive');
+	Menus.addSubMenuItem('topbar', 'personnel', 'Employees', 'employee');
 	Menus.addSubMenuItem('topbar', 'personnel', 'Traffic', '/#!/');
 	Menus.addSubMenuItem('topbar', 'personnel', 'Visitors', '/#!/');
 

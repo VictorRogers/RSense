@@ -1,0 +1,80 @@
+<div class="modal-header">
+	<h3 class="modal-title text-center">Employee Creator</h3>
+</div>
+<div class="modal-body">
+	<form name="employeeForm" class="form-horizontal text-center"
+				data-ng-submit="createEmployee(employeeForm.$valid)" novalidate>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="employeeName">Name</label>
+			<div class="controls col-sm-8">
+				<input type="text" id="employeeName" name="employeeName" 
+							 class="form-control" data-ng-model="EmployeeName" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="EmployeeSupervisor">
+				Supervisor
+			</label>
+			<div class="controls col-sm-8">
+				<input type="text" id="EmployeeSupervisor" name="EmployeeSupervisor"
+							 class="form-control" data-ng-model="EmployeeSupervisor"
+							 required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Status</label>
+				<div class="col-sm-8">
+					<select class="form-control" data-ng-model="EmployeeStatus" required>
+						<option value="Active">Active</option>
+						<option value="LOA">Leave of Absence</option>
+						<option value="Suspended">Suspended</option>
+						<option value="Terminated">Terminated</option>
+					</select>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4" for="EmployeeDate"
+						 data-ng-show="EmployeeStatus == 'Active'">
+				Active Date
+			</label>
+			<label class="col-sm-4" for="EmployeeDate"
+						 data-ng-show="EmployeeStatus == 'LOA'">
+				Return Date
+			</label>
+			<label class="col-sm-4" for="EmployeeDate"
+						 data-ng-show="EmployeeStatus == 'Suspended'">
+				Suspension Date
+			</label>
+			<label class="col-sm-4" for="EmployeeDate"
+						 data-ng-show="EmployeeStatus == 'Terminated'">
+				Termination Date
+			</label>
+			<div class="controls col-sm-8" 
+					 data-ng-show="EmployeeStatus != NULL">
+					<div class="input-group">
+	    	    <input type="text" class="form-control" required 
+									 datepicker-popup="{{format}}" 
+    							 data-ng-model="EmployeeDate" is-open="EDOpened"  
+									 datepicker-options="dateOptions" 
+									 date-disabled="disabled(date, mode)" 
+									 close-text="Close"/>
+	            <span class="input-group-btn">
+	              <button type="button" class="btn btn-default" 
+												ng-click="openEmployeeDate($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+	            </span>
+	      	</div>
+			</div>
+		</div>
+	<input type="submit" class="btn btn-primary" value="Create">
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" data-ng-click="cancel()">Cancel</button>
+
+	<div data-ng-show="error" class="text-danger">
+		<strong data-ng-bind="error"></strong>
+	</div>
+
+</div>
