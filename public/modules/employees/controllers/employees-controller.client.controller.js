@@ -32,7 +32,7 @@ angular.module('employees').controller('EmployeesController',
 			var modalInstance = $modal.open({
 				templateUrl: 'modules/employees/views/create-employee.client.view.html',
 				controller: 'CreateEmployeeController',
-				size: 'sm'
+				size: 'lg'
 			});
 		};
 

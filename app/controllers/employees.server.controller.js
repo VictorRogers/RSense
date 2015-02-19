@@ -13,6 +13,13 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var employee = new Employee(req.body);
+	
+	employee.EmployeeDisplayName = employee.EmployeeFirstName + ' ' +
+																 employee.EmployeeLastName;
+
+	employee.EmployeeSupervisorDisplayName = employee.EmployeeSupervisorFirstName
+																					 + ' ' +
+																					 employee.EmployeeSupervisorLastName;
 
 	employee.save(function(err) {
 		if (err) {
@@ -41,6 +48,13 @@ exports.update = function(req, res) {
 	var employee = req.employee;
 
 	employee = _.extend(employee, req.body);
+
+	employee.EmployeeDisplayName = employee.EmployeeFirstName + ' ' +
+																 employee.EmployeeLastName;
+
+	employee.EmployeeSupervisorDisplayName = employee.EmployeeSupervisorFirstName
+																					 + ' ' +
+																					 employee.EmployeeSupervisorLastName;
 
 	employee.save(function(err) {
 		if (err) {
@@ -78,7 +92,7 @@ exports.delete = function(req, res) {
  * List of Employees
  */
 exports.list = function(req, res) {
-	Employee.find().sort('EmployeeName')
+	Employee.find().sort('EmployeeLastName')
 	.exec(function(err, employee) {
 		if (err) {
 			return res.status(400).send({

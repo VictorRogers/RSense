@@ -7,25 +7,48 @@
 				data-ng-submit="editEmployee(editForm.$valid)" novalidate>
 		<fieldset>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="contractor">
-					Employee Name
+				<label class="control-label col-sm-2" for="EmployeeFirstName">
+					Employee First Name
 				</label>
 				<div class="controls col-sm-10">
-					<input type="text" id="EmployeeName" name="EmployeeName" 
+					<input type="text" id="EmployeeFirstName" name="EmployeeFirstName" 
 								 class="form-control"
-								 data-ng-model="employee.EmployeeName">
+								 data-ng-model="employee.EmployeeFirstName">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="EmployeeSupervisor">
-					Employee Supervisor
+				<label class="control-label col-sm-2" for="EmployeeLastName">
+					Employee Last Name
 				</label>
 				<div class="controls col-sm-10">
-					<input type="text" id="EmployeeSupervisor" name="EmployeeSupervisor" 
+					<input type="text" id="EmployeeLastName" name="EmployeeLastName" 
 								 class="form-control"
-								 data-ng-model="employee.EmployeeSupervisor">
+								 data-ng-model="employee.EmployeeLastName">
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" 
+							 for="EmployeeSupervisorFirstName">
+					Supervisor First Name
+				</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="EmployeeSupervisorFirstName"
+								 name="EmployeeSupervisorFirstName" 
+								 class="form-control"
+								 data-ng-model="employee.EmployeeSupervisorFirstName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="EmployeeSupervisorLastName">
+					Supervisor Last Name
+				</label>
+				<div class="controls col-sm-10">
+					<input type="text" id="EmployeeSupervisorLastName" 
+								 name="EmployeeSupervisorLastName"
+								 class="form-control"
+								 data-ng-model="employee.EmployeeSupervisorLastName">
+				</div>
+			</div>	
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="EmployeeContactNumber">
 					Employee Contact Number 

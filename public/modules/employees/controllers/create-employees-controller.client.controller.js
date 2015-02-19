@@ -12,8 +12,10 @@ angular.module('employees').controller('CreateEmployeeController', ['$scope',
 		$scope.createEmployee = function() {
 			$modalInstance.dismiss();
 			var employee = new Employee({
-				EmployeeName: $scope.EmployeeName,
-				EmployeeSupervisor: $scope.EmployeeSupervisor,
+				EmployeeFirstName: $scope.EmployeeFirstName,
+				EmployeeLastName: $scope.EmployeeLastName,
+				EmployeeSupervisorFirstName: $scope.EmployeeSupervisorFirstName,
+				EmployeeSupervisorLastName: $scope.EmployeeSupervisorLastName,
 				EmployeeContactNumber: $scope.EmployeeContactNumber,
 				EmployeeStatus: $scope.EmployeeStatus,
 				EmployeeDate: $scope.EmployeeDate

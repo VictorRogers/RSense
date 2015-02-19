@@ -10,11 +10,24 @@ var mongoose = require('mongoose'),
  * Employee Schema
  */
 var EmployeeSchema = new Schema({
-	EmployeeName: {
+	EmployeeFirstName: {
 		type: String,
-		required: 'Please enter an employee name'
+		required: 'Please enter a first name'
 	},
-	EmployeeSupervisor: {
+	EmployeeLastName: {
+		type: String,
+		required: 'Please enter a last name'
+	},
+	EmployeeDisplayName: {
+		type: String
+	},
+	EmployeeSupervisorFirstName: {
+		type: String
+	},
+	EmployeeSupervisorLastName: {
+		type: String
+	},
+	EmployeeSupervisorDisplayName: {
 		type: String
 	},
 	EmployeeContactNumber: {
